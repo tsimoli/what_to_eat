@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scoped_model/scoped_model.dart';
-import 'package:what_to_eat/blocs/food_bloc.dart';
-import 'package:what_to_eat/blocs/food_state.dart';
 import 'package:what_to_eat/models/filter.dart';
-import 'package:what_to_eat/models/food_model.dart';
 import 'package:what_to_eat/widgets/filter_button.dart';
 
 class SearchFilters extends StatelessWidget {
@@ -36,19 +31,14 @@ class SearchFilters extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<FoodModel>(
-      builder: (BuildContext contex, child, model) {
-        return Wrap(
-          direction: Axis.horizontal,
-          children: filters
-              .map((filter) => FilterButton(
-                    filter: filter,
-                    foodModel: model,
-                    isPressed: model.filters.contains(filter.filterName),
-                  ))
-              .toList(),
-        );
-      },
+    return Wrap(
+      direction: Axis.horizontal,
+      children: filters
+          .map((filter) => FilterButton(
+                filter: filter,
+                isPressed: false,
+              ))
+          .toList(),
     );
   }
 }
