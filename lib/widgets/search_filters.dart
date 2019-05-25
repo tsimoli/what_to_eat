@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:what_to_eat/models/Filters.dart';
 import 'package:what_to_eat/models/filter.dart';
 import 'package:what_to_eat/widgets/filter_button.dart';
 
 class SearchFilters extends StatelessWidget {
   final List<Filter> filters = [
     Filter(
-        name: "Suosikit",
-        emoji: "⭐",
-        filterName: "FAVORITE",
-        color: Colors.yellow[300]),
-    Filter(
         name: "Kasvis",
-        emoji: "🥦",
+        emoji: "🥕",
         filterName: "VEGETABLE",
         color: Colors.green[300]),
     Filter(
@@ -31,14 +28,18 @@ class SearchFilters extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      direction: Axis.horizontal,
-      children: filters
-          .map((filter) => FilterButton(
-                filter: filter,
-                isPressed: false,
-              ))
-          .toList(),
+    final filtersModel = Provider.of<Filters>(context);
+    return Card(
+      color: Color(0xfff4cae0),
+      child: Wrap(
+        direction: Axis.horizontal,
+        children: filters
+            .map((filter) => FilterButton(
+                  filter: filter,
+                  isPressed: filtersModel.getSelectedFilters().contains(filter),
+                ))
+            .toList(),
+      ),
     );
   }
 }

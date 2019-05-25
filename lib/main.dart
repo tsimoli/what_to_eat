@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:what_to_eat/screens/search.dart';
+import 'package:provider/provider.dart';
+import 'models/Filters.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +26,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   void initState() {
     super.initState();
@@ -34,7 +35,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Search(),
+        child: ChangeNotifierProvider<Filters>(
+          builder: (_) => Filters([]),
+          child: Search(),
+        ),
       ),
     );
   }
