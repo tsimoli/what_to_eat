@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:what_to_eat/models/Filters.dart';
 import 'package:what_to_eat/models/filter.dart';
+import 'package:what_to_eat/models/filters.dart';
 import 'package:what_to_eat/widgets/filter_button.dart';
 
 class SearchFilters extends StatelessWidget {
+  final List<Filter> selectedFilters;
+
+  SearchFilters({this.selectedFilters});
+
   final List<Filter> filters = [
     Filter(
         name: "Kasvis",
@@ -28,15 +32,16 @@ class SearchFilters extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final filtersModel = Provider.of<Filters>(context);
-    return Card(
+    return Container(
+      width: double.infinity,
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(vertical: 16),
       color: Color(0xfff4cae0),
       child: Wrap(
         direction: Axis.horizontal,
         children: filters
             .map((filter) => FilterButton(
                   filter: filter,
-                  isPressed: filtersModel.getSelectedFilters().contains(filter),
                 ))
             .toList(),
       ),
