@@ -6,3 +6,14 @@ String foodsQuery = """
     }
    }
 """;
+
+String createFood = """
+mutation createFood(\$input: CreateFoodInput!) {
+    createFood(input: \$input) {
+      errors { key message }
+      food {
+        id
+      }
+    }
+  }
+""";

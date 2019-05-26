@@ -3,9 +3,12 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:what_to_eat/models/filter.dart';
 import 'package:what_to_eat/models/filters.dart';
+import 'package:what_to_eat/models/food.dart';
 import 'package:what_to_eat/utils/queries.dart';
 import 'package:what_to_eat/widgets/food_list.dart';
 import 'package:what_to_eat/widgets/search_filters.dart';
+
+import 'add_food.dart';
 
 class FoodSearch extends StatelessWidget {
   @override
@@ -27,20 +30,40 @@ class FoodSearch extends StatelessWidget {
             print(result.hasErrors);
             return Text(result.errors.toString());
           }
+          var data = result.data;
 
-          return Container(
-            width: double.infinity,
-            child: Column(
-              children: <Widget>[
-                SearchFilters(
-                    selectedFilters: filtersModel.getSelectedFilters()),
-                SizedBox(
-                  height: 50,
-                ),
-                //FoodList()
-              ],
+          return Scaffold(
+            floatingActionButton: FloatingActionButton(
+              onPressed: () => _addFood(context, refetch),
+              child: Icon(Icons.add),
+            ),
+            body: Container(
+              width: double.infinity,
+              child: Column(
+                children: <Widget>[
+                  SearchFilters(
+                      selectedFilters: filtersModel.getSelectedFilters()),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  FoodList(
+                      foods: data['foods']
+                          .map((foodJson) => Food.fromJson(foodJson)))
+                ],
+              ),
             ),
           );
         });
+  }
+
+  _addFood(BuildContext context, Function refetchFoods) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AddFood(
+              refetchFoods: refetchFoods,
+            ),
+      ),
+    );
   }
 }
