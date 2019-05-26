@@ -43,8 +43,12 @@ class FoodSearch extends StatelessWidget {
             floatingActionButton: filtersModel.getIsVisible()
                 ? null
                 : FloatingActionButton(
+                    backgroundColor: Color(0xfff4cae0),
                     onPressed: () => _addFood(context, refetch),
-                    child: Icon(Icons.add),
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.black,
+                    ),
                   ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
