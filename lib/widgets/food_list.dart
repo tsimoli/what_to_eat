@@ -14,14 +14,12 @@ class FoodList extends StatefulWidget {
 class _FoodListState extends State<FoodList> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: widget.foods.length,
-        itemBuilder: (context, index) {
-          var food = widget.foods[index];
-          return FoodListItem(food: food);
-        },
-      ),
+    return ListView.builder(
+      itemCount: widget.foods.length,
+      itemBuilder: (context, index) {
+        var food = widget.foods[index];
+        return FoodListItem(food: food);
+      },
     );
   }
 }

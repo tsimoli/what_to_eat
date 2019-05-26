@@ -3,6 +3,7 @@ String foodsQuery = """
     foods(tags: \$tags) {
       id
       name
+      tags
     }
    }
 """;

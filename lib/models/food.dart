@@ -9,8 +9,10 @@ class Food {
   factory Food.fromJson(Map<String, dynamic> json) => new Food(
         id: json["id"],
         name: json["name"],
-        url: json["url"],
-        tags: new List<String>.from(json["tags"].map((x) => x)),
+        url: json["url"] ?? "",
+        tags: json["tags"] == null
+            ? []
+            : List<String>.from(json["tags"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {

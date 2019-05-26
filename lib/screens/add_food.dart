@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:what_to_eat/utils/filter_list.dart';
 import 'package:what_to_eat/utils/queries.dart';
 import 'package:what_to_eat/utils/toast_service.dart';
+import 'package:what_to_eat/widgets/filter_button.dart';
 
 class AddFood extends StatefulWidget {
   final Function refetchFoods;
@@ -14,13 +16,12 @@ class AddFood extends StatefulWidget {
 
 class _AddFoodState extends State<AddFood> {
   TextEditingController _nameController;
-  TextEditingController _urlController;
+  List<String> tags = [];
 
   @override
   void initState() {
     super.initState();
     _nameController = TextEditingController();
-    _urlController = TextEditingController();
   }
 
   @override
@@ -41,11 +42,49 @@ class _AddFoodState extends State<AddFood> {
                     hintText: 'Ruoan nimi', labelText: "Ruoan nimi"),
                 controller: _nameController,
               ),
-              TextField(
-                decoration: new InputDecoration(
-                    hintText: 'Linkki reseptiin',
-                    labelText: "Linkki reseptiin"),
-                controller: _urlController,
+              Center(
+                  child: Text("Ominaisuudet", style: TextStyle(fontSize: 20))),
+              Container(
+                padding: EdgeInsets.all(8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: filters
+                      .map(
+                        (filter) => Column(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      if (tags.contains(filter.filterName)) {
+                                        tags.remove(filter.filterName);
+                                      } else
+                                        tags.add(filter.filterName);
+                                    });
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color:
+                                                tags.contains(filter.filterName)
+                                                    ? Colors.red
+                                                    : Colors.transparent,
+                                            width: 5),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(40.0))),
+                                    child: Text(
+                                      filter.emoji,
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                ),
+                                Text(filter.name,
+                                    style: TextStyle(fontSize: 15))
+                              ],
+                            ),
+                      )
+                      .toList(),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -108,8 +147,7 @@ class _AddFoodState extends State<AddFood> {
   void _createFood(Function createFood) {
     var food = {
       "name": _nameController.value.text,
-      "url": _urlController.value.text,
-      "tags": [],
+      "tags": tags,
     };
 
     createFood({

@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import 'models/filters.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import 'utils/secure_storage.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -15,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     HttpLink httpLink = HttpLink(
         //endPoint: 'http://192.168.1.177:4000/api',
-        uri: 'http://192.168.10.43:4000/api');
+        uri: 'http://91.159.8.163:4000/api');
 
     /*final AuthLink authLink = AuthLink(
       getToken: () =>
@@ -64,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: SafeArea(
         child: ChangeNotifierProvider<Filters>(
-          builder: (_) => Filters([]),
+          builder: (_) => Filters([], false),
           child: FoodSearch(),
         ),
       ),

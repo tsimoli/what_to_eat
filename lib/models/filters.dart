@@ -3,8 +3,9 @@ import 'package:what_to_eat/models/filter.dart';
 
 class Filters with ChangeNotifier {
   List<Filter> _selectedFilters;
+  bool _isVisible;
 
-  Filters(this._selectedFilters);
+  Filters(this._selectedFilters, this._isVisible);
 
   List<Filter> getSelectedFilters() => _selectedFilters;
 
@@ -16,6 +17,13 @@ class Filters with ChangeNotifier {
   removeSelectedFilter(Filter filter) {
     _selectedFilters
         .removeWhere((Filter f) => f.filterName == filter.filterName);
+    notifyListeners();
+  }
+
+  bool getIsVisible() => _isVisible;
+
+  void toggleIsVisible() {
+    _isVisible = !_isVisible;
     notifyListeners();
   }
 }

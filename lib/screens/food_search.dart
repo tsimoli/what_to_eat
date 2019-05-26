@@ -30,25 +30,40 @@ class FoodSearch extends StatelessWidget {
             print(result.hasErrors);
             return Text(result.errors.toString());
           }
+          if (result.data == null) {
+            return Text("Loading");
+          }
           var data = result.data;
 
+          List<Food> foods = (data['foods'] as List<dynamic>)
+              .map((foodJson) => Food.fromJson(foodJson))
+              .toList();
+
           return Scaffold(
-            floatingActionButton: FloatingActionButton(
-              onPressed: () => _addFood(context, refetch),
-              child: Icon(Icons.add),
-            ),
+            floatingActionButton: filtersModel.getIsVisible()
+                ? null
+                : FloatingActionButton(
+                    onPressed: () => _addFood(context, refetch),
+                    child: Icon(Icons.add),
+                  ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
             body: Container(
-              width: double.infinity,
+              color: Color(0xffd0cdd7),
               child: Column(
                 children: <Widget>[
-                  SearchFilters(
-                      selectedFilters: filtersModel.getSelectedFilters()),
-                  SizedBox(
-                    height: 50,
+                  Center(
+                      child:
+                          Text("Mitä syödä?", style: TextStyle(fontSize: 40))),
+                  Expanded(
+                    child: Stack(children: [
+                      FoodList(foods: foods),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: SearchFilters(),
+                      ),
+                    ]),
                   ),
-                  FoodList(
-                      foods: data['foods']
-                          .map((foodJson) => Food.fromJson(foodJson)))
                 ],
               ),
             ),

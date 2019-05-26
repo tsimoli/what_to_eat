@@ -9,15 +9,13 @@ class FoodListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Card(
       margin: EdgeInsets.all(16),
+      elevation: 10,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Divider(
-            height: 5,
-          ),
           Text(
             food.name,
             style: TextStyle(
@@ -44,12 +42,6 @@ class FoodListItem extends StatelessWidget {
 
   _getTagIcon(String tag) {
     switch (tag) {
-      case "FAVORITE":
-        return TagIcon(
-          color: Colors.green[300],
-          emoji: "⭐",
-        );
-        break;
       case "HEALTHY":
         return TagIcon(
           color: Colors.greenAccent,
@@ -58,7 +50,7 @@ class FoodListItem extends StatelessWidget {
         break;
       case "TREAT":
         return TagIcon(
-          color: Colors.red,
+          color: Colors.yellow,
           emoji: "🍕",
         );
         break;
@@ -71,7 +63,7 @@ class FoodListItem extends StatelessWidget {
       case "VEGETABLE":
         return TagIcon(
           color: Colors.green[300],
-          emoji: "🥦",
+          emoji: "🥕",
         );
         break;
       case "FAST":

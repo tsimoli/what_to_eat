@@ -19,16 +19,23 @@ class FilterButton extends StatelessWidget {
             .length >
         0;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 4),
-      child: RaisedButton(
-        color: filter.color,
-        onPressed: () => isPressed
+      margin: EdgeInsets.all(4),
+      child: GestureDetector(
+        onTap: () => isPressed
             ? filtersModel.removeSelectedFilter(filter)
             : filtersModel.addSelectedFilter(filter),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        elevation: isPressed ? 0 : 20,
-        child: Text("${filter.name} ${filter.emoji}",
-            style: TextStyle(color: AppColors.textColor, fontSize: 20)),
+        child: Container(
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+              color: filter.color,
+              border: Border.all(
+                  color: isPressed ? Colors.red : Colors.transparent, width: 2),
+              borderRadius: BorderRadius.all(Radius.circular(40.0))),
+          child: Text(
+            "${filter.name} ${filter.emoji}",
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
       ),
     );
   }
