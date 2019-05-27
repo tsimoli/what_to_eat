@@ -15,13 +15,6 @@ class MyApp extends StatelessWidget {
         //endPoint: 'http://192.168.1.177:4000/api',
         uri: 'http://91.159.8.163:4000/api');
 
-    /*final AuthLink authLink = AuthLink(
-      getToken: () =>
-          SecureStorage.getApiToken().then((token) => 'Bearer $token'),
-    );
-
-    final Link link = authLink.concat(httpLink as Link);
-*/
     ValueNotifier<GraphQLClient> client = ValueNotifier(
       GraphQLClient(
         cache: NormalizedInMemoryCache(
