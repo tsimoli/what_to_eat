@@ -1,11 +1,9 @@
 # what_to_eat
 
-## TODO
+## Running
 
-- Scope:
-    - Search with tags
-    - Bloc pattern
-    - Firebase
-    - Add food
-    - Theming
-- 
+Uses GraphQL backend from https://github.com/tsimoli/food
+
+![Alt text](gif/main.gif)
+
+
