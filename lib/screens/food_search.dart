@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:what_to_eat/models/filter.dart';
 import 'package:what_to_eat/models/filters.dart';
 import 'package:what_to_eat/models/food.dart';
+import 'package:what_to_eat/utils/app_colors.dart';
 import 'package:what_to_eat/utils/queries.dart';
 import 'package:what_to_eat/widgets/food_list.dart';
 import 'package:what_to_eat/widgets/search_filters.dart';
@@ -43,7 +44,7 @@ class FoodSearch extends StatelessWidget {
             floatingActionButton: filtersModel.getIsVisible()
                 ? null
                 : FloatingActionButton(
-                    backgroundColor: Color(0xfff4cae0),
+                    backgroundColor: AppColors.pink,
                     onPressed: () => _addFood(context, refetch),
                     child: Icon(
                       Icons.add,
@@ -53,7 +54,7 @@ class FoodSearch extends StatelessWidget {
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
             body: Container(
-              color: Color(0xffE7ECF2),
+              color: AppColors.grey,
               child: Column(
                 children: <Widget>[
                   Center(

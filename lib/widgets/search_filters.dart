@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:what_to_eat/models/filters.dart';
+import 'package:what_to_eat/utils/app_colors.dart';
 import 'package:what_to_eat/utils/filter_list.dart';
 import 'package:what_to_eat/widgets/filter_button.dart';
 
@@ -66,7 +67,7 @@ class _SearchFiltersState extends State<SearchFilters>
                 margin: EdgeInsets.only(left: _notchLeftMargin),
                 width: _notchWidth,
                 decoration: BoxDecoration(
-                    color: Color(0xfff4cae0),
+                    color: AppColors.pink,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(5),
                         bottomLeft: Radius.circular(5))),
@@ -90,7 +91,7 @@ class _SearchFiltersState extends State<SearchFilters>
             child: Container(
               margin: EdgeInsets.only(right: 8, bottom: 8),
               decoration: BoxDecoration(
-                  color: Color(0xfff4cae0),
+                  color: AppColors.pink,
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               child: Container(
                 padding: EdgeInsets.all(8),
