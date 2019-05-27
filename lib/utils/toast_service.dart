@@ -6,7 +6,7 @@ class ToastService {
     return Fluttertoast.showToast(
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
+        gravity: ToastGravity.TOP,
         timeInSecForIos: 1,
         backgroundColor: Colors.green,
         textColor: Colors.white,
@@ -17,7 +17,7 @@ class ToastService {
     return Fluttertoast.showToast(
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
+        gravity: ToastGravity.TOP,
         timeInSecForIos: 1,
         backgroundColor: Colors.green,
         textColor: Colors.white,
