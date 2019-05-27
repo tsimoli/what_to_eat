@@ -53,12 +53,13 @@ class FoodSearch extends StatelessWidget {
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
             body: Container(
-              color: Color(0xffd0cdd7),
+              color: Color(0xffE7ECF2),
               child: Column(
                 children: <Widget>[
                   Center(
                       child:
                           Text("Mitä syödä?", style: TextStyle(fontSize: 40))),
+                  Divider(),
                   Expanded(
                     child: Stack(children: [
                       FoodList(foods: foods),

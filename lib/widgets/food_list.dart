@@ -14,12 +14,16 @@ class FoodList extends StatefulWidget {
 class _FoodListState extends State<FoodList> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: widget.foods.length,
-      itemBuilder: (context, index) {
-        var food = widget.foods[index];
-        return FoodListItem(food: food);
-      },
-    );
+    return NotificationListener<OverscrollIndicatorNotification>(
+        onNotification: (overscroll) {
+          overscroll.disallowGlow();
+        },
+        child: ListView.builder(
+          itemCount: widget.foods.length,
+          itemBuilder: (context, index) {
+            var food = widget.foods[index];
+            return FoodListItem(food: food);
+          },
+        ));
   }
 }
